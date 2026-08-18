@@ -1,0 +1,5 @@
+[project]
+name = "llm-security-lab"
+version = "0.1.0"
+description = "Prompt Injection / LLM Security Experiments"
+requires-python = ">=3.10"
