@@ -4,13 +4,20 @@
 > This is an original, from-scratch build. It is not affiliated with, and does not
 > contain any code, prompts, data, or business logic from, any employer or client.
 
-![status](https://img.shields.io/badge/status-planned-lightgrey)
+![status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 ## 1. Problem
 
 As LLM apps proliferate, understanding and defending against prompt injection and jailbreaks is a practical security skill worth demonstrating responsibly.
+
+> **Defensive-research purpose.** This repository is a testing tool for
+> evaluating whether an LLM application's guardrails withstand well-known,
+> publicly documented attack patterns. The scenario library in `scenarios/`
+> contains no operational exploit against any specific system; every entry
+> documents the expected *defended* behavior. Do not use it to attack systems
+> you do not own or have permission to test.
 
 ## 2. Architecture
 
@@ -83,7 +90,12 @@ No proprietary, employer-owned, or client-identifiable data is used in this proj
 Document the commands used to run training, ingestion, or the main pipeline, e.g.:
 
 ```bash
-python -m src.main --config configs/default.yaml
+# Phase 1: browse the defensive prompt-injection scenario library
+python -m src.main list
+python -m src.main list --category jailbreak
+python -m src.main show ignore-previous-instructions
+python -m src.main stats
+python -m src.main validate
 ```
 
 ## 10. Evaluation

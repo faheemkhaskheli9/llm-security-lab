@@ -1,5 +1,24 @@
 [project]
 name = "llm-security-lab"
 version = "0.1.0"
-description = "Prompt Injection / LLM Security Experiments"
+description = "Prompt Injection / LLM Security Experiments (defensive research)"
 requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.5,<3",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Phase 2 target-app / guardrail integration.
+providers = [
+    "openai>=1.14",
+    "langchain>=0.1",
+]
+dev = ["pytest>=7.4"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["src"]

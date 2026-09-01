@@ -1,1 +1,5 @@
-# Fill in with the exact package versions used once implementation starts.
+# Phase 1 (scenario library) dependencies.
+# Phase 2 provider/guardrail deps are the `providers` extra in pyproject.toml.
+pydantic>=2.5,<3
+pyyaml>=6.0
+pytest>=7.4

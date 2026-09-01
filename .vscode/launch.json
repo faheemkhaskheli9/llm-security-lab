@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "LLM Security Lab: list scenarios",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.main",
+      "args": ["list"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "LLM Security Lab: show scenario",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "src.main",
+      "args": ["show", "ignore-previous-instructions"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "LLM Security Lab: pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["tests/", "-v"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
