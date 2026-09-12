@@ -59,6 +59,20 @@ def test_jailbreak_scenarios_have_their_own_file_and_expected_behavior():
     assert all(s.category is not Category.JAILBREAK for s in injection_lib)
 
 
+def test_system_prompt_leak_scenarios_cover_direct_and_indirect_attempts():
+    # Acceptance: at least one direct-ask and one indirect/obfuscated
+    # leakage attempt, each with a documented expected safe/refused behavior.
+    leak_lib = load_scenarios(SCENARIOS_DIR / "system_prompt_leak.yaml")
+    assert all(s.category is Category.SYSTEM_PROMPT_LEAK for s in leak_lib)
+
+    direct = leak_lib.filter(technique="direct-ask")
+    indirect = leak_lib.filter(technique="indirect")
+    assert direct
+    assert indirect
+    for s in leak_lib:
+        assert s.expected_safe_behavior
+
+
 def test_missing_path_is_error(tmp_path):
     with pytest.raises(ScenarioError, match="not found"):
         load_scenarios(tmp_path / "nope")
