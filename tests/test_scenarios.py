@@ -46,6 +46,19 @@ def test_filter_and_stats():
     assert lib.filter(technique="indirect-injection")
 
 
+def test_jailbreak_scenarios_have_their_own_file_and_expected_behavior():
+    # Acceptance: jailbreak scenarios live alongside (not mixed into) the
+    # injection library, each with a documented expected safe/refused behavior.
+    jb_lib = load_scenarios(SCENARIOS_DIR / "jailbreak.yaml")
+    assert len(jb_lib) >= 5
+    for s in jb_lib:
+        assert s.category is Category.JAILBREAK
+        assert s.expected_safe_behavior
+
+    injection_lib = load_scenarios(SCENARIOS_DIR / "prompt_injection.yaml")
+    assert all(s.category is not Category.JAILBREAK for s in injection_lib)
+
+
 def test_missing_path_is_error(tmp_path):
     with pytest.raises(ScenarioError, match="not found"):
         load_scenarios(tmp_path / "nope")
